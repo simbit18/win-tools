@@ -1,0 +1,53 @@
+name: release
+
+permissions:
+  ## Allow publishing of GitHub Release
+  contents: write
+on: 
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/release.yml'
+
+jobs:
+  win-tools:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        msystem:
+          - MSYS
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{ matrix.msystem }}
+          update: true
+          install: >-
+            zip
+      - name: Checkout Source Files
+        run: |
+          echo 'Checkout Source Files'
+          mkdir win-tools
+          cp ../../scripts/tools.sh tools.sh
+          ./tools.sh
+          cp /usr/bin/msys-iconv-2.dll win-tools/msys-iconv-2.dll
+          cp /usr/bin/msys-intl-8.dll win-tools/msys-intl-8.dll
+          cp /usr/bin/msys-pcre-1.dll win-tools/msys-pcre-1.dll
+          cp /usr/bin/msys-gmp-10.dll win-tools/msys-gmp-10.dll
+          cp /usr/bin/msys-charset-1.dll win-tools/msys-charset-1.dll
+          cp /usr/bin/flock.exe win-tools/flock.exe
+          zip -r win-tools.zip win-tools
+
+      - name: Publish the GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: win-tools-v1.38.0
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+          files: |
+            win-tools-v1.38.0.zip
