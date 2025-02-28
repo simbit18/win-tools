@@ -36,8 +36,8 @@ add_path() {
 # Calculate hash value of passed file
 check_hash() {
 
-publishedHash=$1
-filetocheck=$2
+  publishedHash=$1
+  filetocheck=$2
 
   if [[ -z $publishedHash && -z $filetocheck ]]; then
     echo "ERROR: invalid number of arguments passed"

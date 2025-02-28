@@ -34,6 +34,7 @@ jobs:
           mkdir win-tools
           cp scripts/tools.sh tools.sh
           ./tools.sh
+          cp /usr/bin/msys-2.0.dll win-tools/msys-2.0.dll
           cp /usr/bin/msys-iconv-2.dll win-tools/msys-iconv-2.dll
           cp /usr/bin/msys-intl-8.dll win-tools/msys-intl-8.dll
           cp /usr/bin/msys-pcre-1.dll win-tools/msys-pcre-1.dll
