@@ -27,6 +27,7 @@ jobs:
           msystem: ${{ matrix.msystem }}
           update: true
           install: >-
+            genromfs
             zip
       - name: Checkout Source Files
         run: |
@@ -41,6 +42,7 @@ jobs:
           cp /usr/bin/msys-gmp-10.dll win-tools/msys-gmp-10.dll
           cp /usr/bin/msys-charset-1.dll win-tools/msys-charset-1.dll
           cp /usr/bin/flock.exe win-tools/flock.exe
+          cp /usr/bin/genromfs.exe win-tools/genromfs.exe
           zip -r win-tools-v1.38.0.zip win-tools
 
       - name: Publish the GitHub Release
