@@ -70,8 +70,11 @@ busybox_tool() {
     local toolname
 
     # 2025-02-28
-    basefile=FRP-5579-g5749feb35
-    publishedHash="1255109d6335adf8374888f9c9fc70221f098cb6bf03f183e710e71179ecad78"
+    # basefile=FRP-5579-g5749feb35
+    # publishedHash="1255109d6335adf8374888f9c9fc70221f098cb6bf03f183e710e71179ecad78"
+    # 2025-10-11
+    basefile=FRP-5857-g3681e397f
+    publishedHash="0ee2bfac98adea79969ff9a969799def74db332a86afa87a890e6230642eb901"
     toolname=busybox.exe
 
     cd "${NUTTXTOOLS}"
