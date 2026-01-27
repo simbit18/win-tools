@@ -22,13 +22,15 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{ matrix.msystem }}
           update: true
           install: >-
             genromfs
+            patch
+            vim
             zip
       - name: Checkout Source Files
         run: |
@@ -44,6 +46,9 @@ jobs:
           cp /usr/bin/msys-charset-1.dll win-tools/msys-charset-1.dll
           cp /usr/bin/flock.exe win-tools/flock.exe
           cp /usr/bin/genromfs.exe win-tools/genromfs.exe
+          cp /usr/bin/patch.exe win-tools/patch.exe
+          cp /usr/bin/tar.exe win-tools/tar.exe
+          cp /usr/bin/xxd.exe win-tools/xxd.exe
           zip -r win-tools-${{ env.WIN_TOOLS_VERSION }}.zip win-tools
 
       - name: Publish the GitHub Release

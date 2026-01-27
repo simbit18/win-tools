@@ -97,7 +97,7 @@ install_build_tools() {
      mkdir -p "${NUTTXTOOLS}"
   fi
 
-  install="basename cat cmp cp cut echo expr find grep install ls mv patch printf pwd rm sed seq sha256sum sha3sum sha512sum sort test touch tr uniq unzip xxd yes"
+  install="awk basename cat cmp cp cut echo expr find grep install ls mv printf pwd rm sed seq sha256sum sha3sum sha512sum sort test touch tr true uniq unzip xz yes"
 
   oldpath=$(cd . && pwd -P)
   
